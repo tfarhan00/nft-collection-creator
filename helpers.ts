@@ -3,7 +3,7 @@ import base58 from "bs58";
 import { mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
 import { mplCandyMachine } from "@metaplex-foundation/mpl-candy-machine";
 import fs from "fs";
-import { clusterApiUrl } from "@solana/web3.js";
+import { Cluster, clusterApiUrl } from "@solana/web3.js";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import { keypairIdentity } from "@metaplex-foundation/umi";
 
@@ -16,10 +16,10 @@ export const convertUmiTxToLink = (tx: {
   )}?cluster=devnet`;
 };
 
-export const createUmiInstance = () => {
-  const umi = createUmi(clusterApiUrl("devnet"));
+export const createUmiInstance = (cluster: Cluster = "devnet") => {
+  const umi = createUmi(clusterApiUrl(cluster));
 
-  // Import your private key file and parse it.
+  // Import your private key file and parse it. (make sure to have some SOL)
   const wallet = "./my-wallet.json";
   const secretKey = JSON.parse(fs.readFileSync(wallet, "utf-8"));
 
@@ -29,9 +29,8 @@ export const createUmiInstance = () => {
   );
 
   // Register it to the Umi client.
-  umi
+  return umi
     .use(keypairIdentity(keypair))
-    .use(mplCandyMachine())
-    .use(mplTokenMetadata());
-  return umi;
+    .use(mplTokenMetadata())
+    .use(mplCandyMachine());
 };

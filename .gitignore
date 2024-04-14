@@ -1,2 +1,5 @@
 node_modules
 my-wallet.json
+
+.env
+!.env.example

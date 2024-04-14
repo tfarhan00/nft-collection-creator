@@ -1,5 +1,5 @@
 export const CONFIG = {
-  candyMachineAddress: "7GgyBaT1nqe2ods83KsR9EvivVE2UW9K1LU7Cr7E2XEf",
+  candyMachineAddress: "88GLMEmcqeZFrHVecEasB8112PoK6d7Rd28Nzeit5cry",
   nftCollectionAddress: "",
-  splTokenAddress: "", // for mint payment
+  splTokenAddress: "HDXNS1Kiagah9jTh2ghg9XtkaFvdHwaZzL1baFoEHWi4", // for mint payment
 };
